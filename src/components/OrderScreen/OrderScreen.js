@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import data from "../../data/data.json";
 
 import MenuItem from "../MenuItem";
+import OrderSummary from "../OrderSummary";
 
 class OrderScreen extends Component {
     constructor(props) {
@@ -27,10 +28,13 @@ class OrderScreen extends Component {
         })
     }
 
-    updateOrder(key, newValue) {
-        this.setState({
-            [key]: newValue
-        })
+    updateOrder(key, newValue, subTotal) {
+        this.setState((prevState) => ({
+            order: {
+                ...prevState.order,
+                [key]: {count: newValue, subTotal: subTotal}
+            }
+        }))
     }
 
     render() {
@@ -43,8 +47,11 @@ class OrderScreen extends Component {
                 </div>
                 <div className="container">
                     <div className="row">
-                        <div className="col">
+                        <div className="col-12">
                             <h2>Your Order:</h2>
+                        </div>
+                        <div className="col">
+                            <OrderSummary order={this.state.order} />
                         </div>
                     </div>
                 </div>

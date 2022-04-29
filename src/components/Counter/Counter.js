@@ -6,8 +6,8 @@ function Counter(props) {
     const {update, size, price, item} = props;
 
     useEffect(() => {
-        update(item + "-" + size, count);
-    }, [count, size, update, item]);
+        update(item + "-" + size, count, count * parseFloat(price));
+    }, [count, size, update, item, price]);
 
     return (
         <div className="container">
