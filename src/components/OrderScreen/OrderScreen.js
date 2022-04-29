@@ -4,6 +4,11 @@ import data from "../../data/data.json";
 import MenuItem from "../MenuItem";
 import OrderSummary from "../OrderSummary";
 
+/*
+ * The OrderScreen acts as the parent container for the MenuItem and OrderSummary
+ * components.  It maintains the state of the current order and exposes a function
+ * to child components to update the order state.
+ */
 class OrderScreen extends Component {
     constructor(props) {
         super(props);
@@ -22,12 +27,16 @@ class OrderScreen extends Component {
         })
     }
 
+    // consume the menu response and add it to the state
     componentDidMount() {
         this.fetchData().then(r => {
             this.setState({menu: r.menu})
         })
     }
 
+    // passed as a prop to the MenuItem component, and subsequently to the
+    // Counter component.  Offers a way for child components to update the
+    // order state of the OrderScreen component (this component)
     updateOrder(key, newValue, subTotal) {
         this.setState((prevState) => ({
             order: {

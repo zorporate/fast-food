@@ -1,5 +1,14 @@
 import React, {useEffect, useState} from "react";
 
+/*
+ * A Counter is a component that implements a counter functionality using Hooks.  Counters
+ * are unique per option of item.
+ * 
+ * @prop update:  function that updates the order in OrderScreen component
+ * @prop size:    the size of this option
+ * @prop price:   the price of this option
+ * @prop item:    the category of item (burger, fries, or drink, in this sample)
+ */
 function Counter(props) {
     const [count, setCount] = useState(0);
 
@@ -13,7 +22,6 @@ function Counter(props) {
         <div className="container">
             <div className="row">
                 <div className="col">
-                    {/* <p>Size:  {props.size}, ${props.price}</p> */}
                     <button onClick={() => (count > 0) ? setCount(count - 1) : setCount(count)} >-</button>
                     {count}
                     <button onClick={() => setCount(count + 1)} >+</button>
