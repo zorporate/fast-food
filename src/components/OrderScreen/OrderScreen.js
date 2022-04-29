@@ -1,10 +1,14 @@
 import React, {Component} from "react";
 import data from "../../data/data.json";
 
+import MenuItem from "../MenuItem";
+
 class OrderScreen extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            menu: undefined
+        };
         this.fetchData = this.fetchData.bind(this);
     }
 
@@ -24,7 +28,11 @@ class OrderScreen extends Component {
     render() {
         return (
             <div className="orderScreenWrapper">
-                <p>test</p>
+                <div className="container">
+                    <div className="row">
+                        {this.state.menu?.map((item, index) => <MenuItem key={index} data={item} />)}
+                    </div>
+                </div>
             </div>
         )
     }
